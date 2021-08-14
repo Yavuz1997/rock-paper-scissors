@@ -20,27 +20,38 @@
         return "Something went wrong :(";
     }
 
-    function capitilize(text){
-
-        let newText = text.toLowerCase();
-        newText = newText.replace(newText.charAt(0),newText.charAt(0).toUpperCase());
-        return newText;
-
-    }
-
     function playRound(playerSelection, computerSelection){
 
         switch (playerSelection){
             case "rock":
+                if(computerSelection == "paper"){
+                    return "You Lose! Paper beats Rock";
+                }
+                if(computerSelection == "scissors"){
+                    return "You Win! Rock beats Scissors";
+                }
                 break;
             case "paper":
+                if(computerSelection == "rock"){
+                    return "You Win! Paper beats Rock";
+                }
+                if(computerSelection == "scissors"){
+                    return "You Lose! Scissors beats Paper";
+                }
                 break;
             case "scissors":
+                if(computerSelection == "rock"){
+                    return "You Lose! Rock beats Scissors";
+                }
+                if(computerSelection == "paper"){
+                    return "You Win! Scissors beats Paper";
+                }
                 break;
             default:
                 return "Error";
                 break;
         }
+        return "Error";
 
     }
 
@@ -51,7 +62,7 @@
     if(userInput == computerInput){
         tie = true;
     }
-    
+
     while(tie){
         console.log(userInput+" vs "+computerInput + " is a tie! Try again")
         computerInput = computerPlay();
@@ -61,6 +72,7 @@
         }
     }
 
+    console.log(playRound(userInput,computerInput));
 
   </script>
 </body>
