@@ -10,21 +10,21 @@
     <script>
 
         let playerScore = 0;
-        let computerScore = 0;  
+        let computerScore = 0;
 
-        for(let i = 1; i < 6; i++){
-            if(game(i)){
+        for (let i = 1; i < 6; i++) {
+            if (game(i)) {
                 playerScore++;
-            }else{
+            } else {
                 computerScore++;
             }
-            console.log("Player Score: " + playerScore + " | Computer Score: " +computerScore);
+            console.log("Player Score: " + playerScore + " | Computer Score: " + computerScore);
             console.log("\n");
         }
 
-        if(playerScore>computerScore){
+        if (playerScore > computerScore) {
             console.log("You won the game!");
-        }else{
+        } else {
             console.log("You lost the game!");
         }
 
@@ -35,7 +35,7 @@
             let computerInput = computerPlay();
             let userInput = prompt("Enter rock, paper or scissors").toLowerCase();
             checkValidity(userInput);
-            
+
 
             let tie = false;
 
@@ -56,12 +56,12 @@
             console.log("Round: " + round);
             console.log("User Input: " + userInput + " | Computer Input: " + computerInput);
             console.log(playRound(userInput, computerInput));
-            if(playRound(userInput, computerInput).includes("Win")){
+            if (playRound(userInput, computerInput).includes("Win")) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
-            
+
 
             function computerPlay() {
                 let randomChoice = Math.floor(Math.random() * 3);
@@ -113,13 +113,13 @@
             }
 
 
-            function checkValidity(){
+            function checkValidity() {
 
-                while((userInput != "rock")&&(userInput != "paper")&&(userInput != "scissors")){
-                console.log("Invalid Entry! Try Again");
-                console.log("\n");
-                userInput = prompt("Enter rock, paper or scissors").toLowerCase();
-            }  
+                while ((userInput != "rock") && (userInput != "paper") && (userInput != "scissors")) {
+                    console.log("Invalid Entry! Try Again");
+                    console.log("\n");
+                    userInput = prompt("Enter rock, paper or scissors").toLowerCase();
+                }
             }
 
         }
