@@ -19,7 +19,18 @@
         }
         return "Something went wrong :(";
     }
-    console.log(computerPlay());
+
+    function capitilize(text){
+
+        let newText = text.toLowerCase();
+        newText = newText.replace(newText.charAt(0),newText.charAt(0).toUpperCase());
+        return newText;
+
+    }
+
+    const input = prompt("Enter rock, paper or scissors");
+    console.log(capitilize(input));
+
   </script>
 </body>
 </html>
