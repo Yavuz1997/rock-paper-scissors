@@ -1,79 +1,133 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Page Title</title>
-  <meta charset="UTF-8"/>
+    <title>Page Title</title>
+    <meta charset="UTF-8" />
 </head>
+
 <body>
-  <script>
-    function computerPlay(){
-        let randomChoice = Math.floor(Math.random() * 3);
-        if(randomChoice === 0){
-            return "rock";
-        }
-        if(randomChoice === 1){
-            return "paper";
-        }
-        if(randomChoice === 2){
-            return "scissors";
-        }
-        return "Something went wrong :(";
-    }
+    <script>
 
-    function playRound(playerSelection, computerSelection){
+        let playerScore = 0;
+        let computerScore = 0;  
 
-        switch (playerSelection){
-            case "rock":
-                if(computerSelection == "paper"){
-                    return "You Lose! Paper beats Rock";
+        for(let i = 1; i < 6; i++){
+            if(game(i)){
+                playerScore++;
+            }else{
+                computerScore++;
+            }
+            console.log("Player Score: " + playerScore + " | Computer Score: " +computerScore);
+            console.log("\n");
+        }
+
+        if(playerScore>computerScore){
+            console.log("You won the game!");
+        }else{
+            console.log("You lost the game!");
+        }
+
+        function game(round, playerScore, computerScore) {
+
+
+
+            let computerInput = computerPlay();
+            let userInput = prompt("Enter rock, paper or scissors").toLowerCase();
+            checkValidity(userInput);
+            
+
+            let tie = false;
+
+            if (userInput == computerInput) {
+                tie = true;
+            }
+
+            while (tie) {
+                console.log(userInput + " vs " + computerInput + " is a tie! Try again");
+                console.log("\n");
+                computerInput = computerPlay();
+                userInput = prompt("Enter rock, paper or scissors").toLowerCase();
+                checkValidity(userInput);
+                if (userInput != computerInput) {
+                    tie = false;
                 }
-                if(computerSelection == "scissors"){
-                    return "You Win! Rock beats Scissors";
+            }
+            console.log("Round: " + round);
+            console.log("User Input: " + userInput + " | Computer Input: " + computerInput);
+            console.log(playRound(userInput, computerInput));
+            if(playRound(userInput, computerInput).includes("Win")){
+                return true;
+            }else{
+                return false;
+            }
+            
+
+            function computerPlay() {
+                let randomChoice = Math.floor(Math.random() * 3);
+                if (randomChoice === 0) {
+                    return "rock";
                 }
-                break;
-            case "paper":
-                if(computerSelection == "rock"){
-                    return "You Win! Paper beats Rock";
+                if (randomChoice === 1) {
+                    return "paper";
                 }
-                if(computerSelection == "scissors"){
-                    return "You Lose! Scissors beats Paper";
+                if (randomChoice === 2) {
+                    return "scissors";
                 }
-                break;
-            case "scissors":
-                if(computerSelection == "rock"){
-                    return "You Lose! Rock beats Scissors";
+                return "Something went wrong :(";
+            }
+
+            function playRound(playerSelection, computerSelection) {
+
+                switch (playerSelection) {
+                    case "rock":
+                        if (computerSelection == "paper") {
+                            return "You Lose! Paper beats Rock";
+                        }
+                        if (computerSelection == "scissors") {
+                            return "You Win! Rock beats Scissors";
+                        }
+                        break;
+                    case "paper":
+                        if (computerSelection == "rock") {
+                            return "You Win! Paper beats Rock";
+                        }
+                        if (computerSelection == "scissors") {
+                            return "You Lose! Scissors beats Paper";
+                        }
+                        break;
+                    case "scissors":
+                        if (computerSelection == "rock") {
+                            return "You Lose! Rock beats Scissors";
+                        }
+                        if (computerSelection == "paper") {
+                            return "You Win! Scissors beats Paper";
+                        }
+                        break;
+                    default:
+                        return "Error";
+                        break;
                 }
-                if(computerSelection == "paper"){
-                    return "You Win! Scissors beats Paper";
-                }
-                break;
-            default:
                 return "Error";
-                break;
+
+            }
+
+
+            function checkValidity(){
+
+                while((userInput != "rock")&&(userInput != "paper")&&(userInput != "scissors")){
+                console.log("Invalid Entry! Try Again");
+                console.log("\n");
+                userInput = prompt("Enter rock, paper or scissors").toLowerCase();
+            }  
+            }
+
         }
-        return "Error";
 
-    }
 
-    let computerInput = computerPlay();
-    let userInput = prompt("Enter rock, paper or scissors").toLowerCase();
-    let tie = false;
 
-    if(userInput == computerInput){
-        tie = true;
-    }
 
-    while(tie){
-        console.log(userInput+" vs "+computerInput + " is a tie! Try again")
-        computerInput = computerPlay();
-        userInput = prompt("Enter rock, paper or scissors").toLowerCase();
-        if (userInput != computerInput){
-            tie = false;
-        }
-    }
-
-    console.log(playRound(userInput,computerInput));
-
-  </script>
+    </script>
 </body>
+
 </html>
