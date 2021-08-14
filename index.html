@@ -28,8 +28,39 @@
 
     }
 
-    const input = prompt("Enter rock, paper or scissors");
-    console.log(capitilize(input));
+    function playRound(playerSelection, computerSelection){
+
+        switch (playerSelection){
+            case "rock":
+                break;
+            case "paper":
+                break;
+            case "scissors":
+                break;
+            default:
+                return "Error";
+                break;
+        }
+
+    }
+
+    let computerInput = computerPlay();
+    let userInput = prompt("Enter rock, paper or scissors").toLowerCase();
+    let tie = false;
+
+    if(userInput == computerInput){
+        tie = true;
+    }
+    
+    while(tie){
+        console.log(userInput+" vs "+computerInput + " is a tie! Try again")
+        computerInput = computerPlay();
+        userInput = prompt("Enter rock, paper or scissors").toLowerCase();
+        if (userInput != computerInput){
+            tie = false;
+        }
+    }
+
 
   </script>
 </body>
