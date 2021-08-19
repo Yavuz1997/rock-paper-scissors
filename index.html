@@ -48,7 +48,42 @@
             return "Something went wrong :(";
         }
 
-        const btn = document.querySelector
+        const rock = document.querySelector("#rock");
+        const paper = document.querySelector("#paper");
+        const scissors = document.querySelector("#scissors");
+        rock.addEventListener("click",clicked);
+        paper.addEventListener("click",clicked);
+        scissors.addEventListener("click",clicked);
+
+        function clicked(){
+            switch(this.id){
+                case "rock":
+                    rock.classList.add("clicked");
+                    paper.classList.remove("clicked");
+                    scissors.classList.remove("clicked");
+                    break;
+                case "scissors":
+                    rock.classList.remove("clicked");
+                    paper.classList.remove("clicked");
+                    scissors.classList.add("clicked");
+                    break;
+                case "paper":
+                    rock.classList.remove("clicked");
+                    paper.classList.add("clicked");
+                    scissors.classList.remove("clicked");
+                    break;
+            }
+        }
+
+        const button = document.querySelector("#play");
+        button.addEventListener("click", playGame);
+
+        function playGame(){
+            //console.log(rock.getAttribute("class"));
+
+        }
+
+
 
 
 
