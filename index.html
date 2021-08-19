@@ -7,11 +7,13 @@
 </head>
 
 <body>
+    <div>
+    </div>
     <script>
 
-        let playerScore = 0;
+        function temporary(){
+            let playerScore = 0;
         let computerScore = 0;
-
         for (let i = 1; i < 6; i++) {
             if (game(i)) {
                 playerScore++;
@@ -21,28 +23,20 @@
             console.log("Player Score: " + playerScore + " | Computer Score: " + computerScore);
             console.log("\n");
         }
-
         if (playerScore > computerScore) {
             console.log("You won the game!");
         } else {
             console.log("You lost the game!");
         }
-
         function game(round, playerScore, computerScore) {
-
-
-
             let computerInput = computerPlay();
             let userInput = prompt("Enter rock, paper or scissors").toLowerCase();
             checkValidity(userInput);
-
-
             let tie = false;
 
             if (userInput == computerInput) {
                 tie = true;
             }
-
             while (tie) {
                 console.log(userInput + " vs " + computerInput + " is a tie! Try again");
                 console.log("\n");
@@ -61,8 +55,6 @@
             } else {
                 return false;
             }
-
-
             function computerPlay() {
                 let randomChoice = Math.floor(Math.random() * 3);
                 if (randomChoice === 0) {
@@ -76,7 +68,6 @@
                 }
                 return "Something went wrong :(";
             }
-
             function playRound(playerSelection, computerSelection) {
 
                 switch (playerSelection) {
@@ -109,24 +100,18 @@
                         break;
                 }
                 return "Error";
-
             }
-
-
             function checkValidity() {
-
                 while ((userInput != "rock") && (userInput != "paper") && (userInput != "scissors")) {
                     console.log("Invalid Entry! Try Again");
                     console.log("\n");
                     userInput = prompt("Enter rock, paper or scissors").toLowerCase();
                 }
             }
-
         }
 
-
-
-
+        }
+        
     </script>
 </body>
 
