@@ -4,114 +4,137 @@
 <head>
     <title>Page Title</title>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
-    <div>
+    <h1>ROCK PAPER SCISSORS</h1>
+    <div id="choices">
+        <div id="playerChoice">
+            <input type="image" id="rock" src="images/rps-rock.png">
+            <input type="image" id="paper" src="images/rps-paper.png">
+            <input type="image" id="scissors" src="images/rps-scissors.png">
+        </div>
+        <div id="computerChoice">
+            <img id="cRock" src="images/rps-rock.png">
+            <img id="cPaper" src="images/rps-paper.png">
+            <img id="cScissors" src="images/rps-scissors.png">
+        </div>
     </div>
+    <div id="playButton">
+        <button type="submit" id="play">Play</button>
+    </div>
+    <div id="winner">
+
+    </div>
+    <div id="history">
+
+    </div>
+
     <script>
 
-        function temporary(){
+        function computerPlay() {
+            let randomChoice = Math.floor(Math.random() * 3);
+            if (randomChoice === 0) {
+                return "rock";
+            }
+            if (randomChoice === 1) {
+                return "paper";
+            }
+            if (randomChoice === 2) {
+                return "scissors";
+            }
+            return "Something went wrong :(";
+        }
+
+        const btn = document.querySelector
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        function temporary() {
             let playerScore = 0;
-        let computerScore = 0;
-        for (let i = 1; i < 6; i++) {
-            if (game(i)) {
-                playerScore++;
-            } else {
-                computerScore++;
-            }
-            console.log("Player Score: " + playerScore + " | Computer Score: " + computerScore);
-            console.log("\n");
-        }
-        if (playerScore > computerScore) {
-            console.log("You won the game!");
-        } else {
-            console.log("You lost the game!");
-        }
-        function game(round, playerScore, computerScore) {
-            let computerInput = computerPlay();
-            let userInput = prompt("Enter rock, paper or scissors").toLowerCase();
-            checkValidity(userInput);
-            let tie = false;
-
-            if (userInput == computerInput) {
-                tie = true;
-            }
-            while (tie) {
-                console.log(userInput + " vs " + computerInput + " is a tie! Try again");
+            let computerScore = 0;
+            for (let i = 1; i < 6; i++) {
+                if (game(i)) {
+                    playerScore++;
+                } else {
+                    computerScore++;
+                }
+                console.log("Player Score: " + playerScore + " | Computer Score: " + computerScore);
                 console.log("\n");
-                computerInput = computerPlay();
-                userInput = prompt("Enter rock, paper or scissors").toLowerCase();
-                checkValidity(userInput);
-                if (userInput != computerInput) {
-                    tie = false;
-                }
             }
-            console.log("Round: " + round);
-            console.log("User Input: " + userInput + " | Computer Input: " + computerInput);
-            console.log(playRound(userInput, computerInput));
-            if (playRound(userInput, computerInput).includes("Win")) {
-                return true;
+            if (playerScore > computerScore) {
+                console.log("You won the game!");
             } else {
-                return false;
+                console.log("You lost the game!");
             }
-            function computerPlay() {
-                let randomChoice = Math.floor(Math.random() * 3);
-                if (randomChoice === 0) {
-                    return "rock";
-                }
-                if (randomChoice === 1) {
-                    return "paper";
-                }
-                if (randomChoice === 2) {
-                    return "scissors";
-                }
-                return "Something went wrong :(";
-            }
-            function playRound(playerSelection, computerSelection) {
+            function game(round, playerScore, computerScore) {
+                let computerInput = computerPlay();
+                let userInput = prompt("Enter rock, paper or scissors").toLowerCase();
+                checkValidity(userInput);
+                let tie = false;
 
-                switch (playerSelection) {
-                    case "rock":
-                        if (computerSelection == "paper") {
-                            return "You Lose! Paper beats Rock";
-                        }
-                        if (computerSelection == "scissors") {
-                            return "You Win! Rock beats Scissors";
-                        }
-                        break;
-                    case "paper":
-                        if (computerSelection == "rock") {
-                            return "You Win! Paper beats Rock";
-                        }
-                        if (computerSelection == "scissors") {
-                            return "You Lose! Scissors beats Paper";
-                        }
-                        break;
-                    case "scissors":
-                        if (computerSelection == "rock") {
-                            return "You Lose! Rock beats Scissors";
-                        }
-                        if (computerSelection == "paper") {
-                            return "You Win! Scissors beats Paper";
-                        }
-                        break;
-                    default:
-                        return "Error";
-                        break;
+                if (userInput == computerInput) {
+                    tie = true;
                 }
-                return "Error";
-            }
-            function checkValidity() {
-                while ((userInput != "rock") && (userInput != "paper") && (userInput != "scissors")) {
-                    console.log("Invalid Entry! Try Again");
-                    console.log("\n");
-                    userInput = prompt("Enter rock, paper or scissors").toLowerCase();
+                console.log("Round: " + round);
+                console.log("User Input: " + userInput + " | Computer Input: " + computerInput);
+                console.log(playRound(userInput, computerInput));
+                if (playRound(userInput, computerInput).includes("Win")) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+                function playRound(playerSelection, computerSelection) {
+
+                    switch (playerSelection) {
+                        case "rock":
+                            if (computerSelection == "paper") {
+                                return "You Lose! Paper beats Rock";
+                            }
+                            if (computerSelection == "scissors") {
+                                return "You Win! Rock beats Scissors";
+                            }
+                            break;
+                        case "paper":
+                            if (computerSelection == "rock") {
+                                return "You Win! Paper beats Rock";
+                            }
+                            if (computerSelection == "scissors") {
+                                return "You Lose! Scissors beats Paper";
+                            }
+                            break;
+                        case "scissors":
+                            if (computerSelection == "rock") {
+                                return "You Lose! Rock beats Scissors";
+                            }
+                            if (computerSelection == "paper") {
+                                return "You Win! Scissors beats Paper";
+                            }
+                            break;
+                        default:
+                            return "Error";
+                            break;
+                    }
+                    return "Error";
                 }
             }
-        }
 
         }
-        
+
     </script>
 </body>
 
