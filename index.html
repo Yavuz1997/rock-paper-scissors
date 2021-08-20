@@ -27,7 +27,12 @@
     </div>
     <div id="results">
         <div id="winner">
+            <p id="result">
 
+            </p>
+            <p id="score">
+
+            </p>
         </div>
         <div id="history">
             <table style="width:100%">
@@ -169,37 +174,58 @@
                     if(computerChoice == "paper"){
                         playerTable.textContent = "Lost";
                         compTable.textContent = "Won";
+                        document.getElementById("result").innerHTML = "Computer Won The Round! :(";
+                        computerScore += 1;
                     }
                     if(computerChoice == "scissors"){
                         playerTable.textContent = "Won";
                         compTable.textContent = "Lost";
+                        document.getElementById("result").innerHTML = "You Won The Round! :)";
+                        playerScore += 1;
                     }
                     break;
                 case "paper":
                      if(computerChoice == "rock"){
                         playerTable.textContent = "Won";
                         compTable.textContent = "Lost";
+                        document.getElementById("result").innerHTML = "You Won The Round! :)";
+                        playerScore += 1;
                     }
                     if(computerChoice == "scissors"){
                         playerTable.textContent = "Lost";
                         compTable.textContent = "Won";
+                        document.getElementById("result").innerHTML = "Computer Won The Round! :(";
+                        computerScore += 1;
                     }
                     break;
                 case "scissors":
                      if(computerChoice == "rock"){
                         playerTable.textContent = "Lost";
                         compTable.textContent = "Won";
+                        document.getElementById("result").innerHTML = "Computer Won The Round! :(";
+                        computerScore += 1;
                     }
                     if(computerChoice == "paper"){
                         playerTable.textContent = "Won";
                         compTable.textContent = "Lost";
+                        document.getElementById("result").innerHTML = "You Won The Round! :)";
+                        playerScore += 1;
                     }
                     break;
             }
 
-
+            
+            document.getElementById("score").innerHTML = "Player: " +playerScore +" | Computer: "+ computerScore;
             currentRound.appendChild(playerTable);
             currentRound.appendChild(compTable);
+            if(gameRound == 5){
+                if(computerScore > playerScore){
+                    document.getElementById("result").innerHTML = "Computer Won The Game! :(";
+                }
+                if(playerScore > computerScore){
+                    document.getElementById("result").innerHTML = "You Won The Game! :)";
+                }
+            }
             gameRound += 1;
             
         }
