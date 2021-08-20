@@ -22,8 +22,9 @@
             <img id="cScissors" src="images/rps-scissors.png">
         </div>
     </div>
-    <div id="playButton">
+    <div id="buttons">
         <button type="submit" id="play">Play</button>
+        <button type="submit" id="reset">Reset</button>
     </div>
     <div id="results">
         <div id="winner">
@@ -109,14 +110,21 @@
         }
 
         const button = document.querySelector("#play");
+        const reset = document.querySelector("#reset");
         let playerScore = 0;
         let computerScore = 0;
         let gameRound = 1;
         button.addEventListener("click", playGame);
+        reset.addEventListener("click", resetGame);
+
+        function resetGame(){
+            location.reload();
+        }
 
         function playGame() {
             if (gameRound == 6){
-                location.reload();
+                resetGame();
+                return;
             }
             let currentRound = document.querySelector("#gameOne");
             switch (gameRound) {
