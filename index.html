@@ -29,10 +29,10 @@
     <div id="results">
         <div id="winner">
             <p id="result">
-
+            </p>
+            <p id="hand">
             </p>
             <p id="score">
-
             </p>
         </div>
         <div id="history">
@@ -183,12 +183,14 @@
                         playerTable.textContent = "Lost";
                         compTable.textContent = "Won";
                         document.getElementById("result").innerHTML = "Computer Won The Round! :(";
+                        document.getElementById("hand").innerHTML = "Paper beats Rock";
                         computerScore += 1;
                     }
                     if(computerChoice == "scissors"){
                         playerTable.textContent = "Won";
                         compTable.textContent = "Lost";
                         document.getElementById("result").innerHTML = "You Won The Round! :)";
+                        document.getElementById("hand").innerHTML = "Rock beats Scissors";
                         playerScore += 1;
                     }
                     break;
@@ -197,12 +199,14 @@
                         playerTable.textContent = "Won";
                         compTable.textContent = "Lost";
                         document.getElementById("result").innerHTML = "You Won The Round! :)";
+                        document.getElementById("hand").innerHTML = "Paper beats Rock";
                         playerScore += 1;
                     }
                     if(computerChoice == "scissors"){
                         playerTable.textContent = "Lost";
                         compTable.textContent = "Won";
                         document.getElementById("result").innerHTML = "Computer Won The Round! :(";
+                        document.getElementById("hand").innerHTML = "Scissors beats Paper";
                         computerScore += 1;
                     }
                     break;
@@ -211,12 +215,14 @@
                         playerTable.textContent = "Lost";
                         compTable.textContent = "Won";
                         document.getElementById("result").innerHTML = "Computer Won The Round! :(";
+                        document.getElementById("hand").innerHTML = "Rock beats Scissors";
                         computerScore += 1;
                     }
                     if(computerChoice == "paper"){
                         playerTable.textContent = "Won";
                         compTable.textContent = "Lost";
                         document.getElementById("result").innerHTML = "You Won The Round! :)";
+                        document.getElementById("hand").innerHTML = "Scissors beats Paper";
                         playerScore += 1;
                     }
                     break;
