@@ -42,7 +42,15 @@ h1{
     justify-content: space-evenly;
 }
 
-img,input{
+input{
+    margin: 10px;
+    padding: 10px;
+    border-radius: 15px;
+    border: 3px solid #d9138a;
+    transition: 0.09s;
+}
+
+img{
     margin: 10px;
     padding: 10px;
     border-radius: 15px;
@@ -83,3 +91,69 @@ button:active{
     background-color: #e2d810;
     transform:scale(1.1);
 }
+
+#cRock{
+    animation-name: flashing;
+    animation-duration: 1s;  
+    animation-iteration-count: infinite;
+}
+
+#cPaper{
+    animation-delay: 0.33s;
+    animation-name: flashing;
+    animation-duration: 1s;  
+    animation-iteration-count: infinite;
+}
+
+#cScissors{
+    animation-delay: 0.66s;
+    animation-name: flashing;
+    animation-duration: 1s;  
+    animation-iteration-count: infinite;
+}
+
+@keyframes flashing {
+    0% {
+        background: #322e2f;
+    }
+    50% {
+        background: #e2d810;
+    }
+    100% {
+        background: #322e2f;
+    }
+  }
+
+  #results{
+    display:flex;
+    width: 100vw;
+    justify-content: center;
+    background-color: #322e2f;
+  }
+
+  #winner{
+    display: flex;
+    flex-direction: row;
+    width: 45%;
+    height: 200px;
+    margin: 15px;
+    border: 3px solid #d9138a;
+    border-radius: 10px;
+    justify-content: space-evenly;
+  }
+
+  #history{
+    display: flex;
+    flex-direction: row;
+    width: 45%;
+    height: 200px;
+    margin: 15px;
+    border: 3px solid #d9138a;
+    border-radius: 10px;
+    justify-content: space-evenly;
+  }
+
+  table{
+      color:#d9138a;
+      text-align: center;
+  }
