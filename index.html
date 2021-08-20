@@ -25,12 +25,37 @@
     <div id="playButton">
         <button type="submit" id="play">Play</button>
     </div>
-    <div id="winner">
+    <div id="results">
+        <div id="winner">
 
-    </div>
-    <div id="history">
+        </div>
+        <div id="history">
+            <table style="width:100%">
+                <tr>
+                    <th></th>
+                    <th>Player</th>
+                    <th>Computer</th>
+                </tr>
+                <tr id="gameOne">
+                    <td>Game 1</td>
+                </tr>
+                <tr id="gameTwo">
+                    <td>Game 2</td>
+                </tr>
+                <tr id="gameThree">
+                    <td>Game 3</td>
+                </tr>
+                <tr id="gameFour">
+                    <td>Game 4</td>
+                </tr>
+                <tr id="gameFive">
+                    <td>Game 5</td>
+                </tr>
+            </table>
 
+        </div>
     </div>
+
 
     <script>
 
@@ -51,12 +76,15 @@
         const rock = document.querySelector("#rock");
         const paper = document.querySelector("#paper");
         const scissors = document.querySelector("#scissors");
-        rock.addEventListener("click",clicked);
-        paper.addEventListener("click",clicked);
-        scissors.addEventListener("click",clicked);
+        rock.addEventListener("click", clicked);
+        paper.addEventListener("click", clicked);
+        scissors.addEventListener("click", clicked);
+        const cRock = document.querySelector("#cRock");
+        const cPaper = document.querySelector("#cPaper");
+        const cScissors = document.querySelector("#cScissors");
 
-        function clicked(){
-            switch(this.id){
+        function clicked() {
+            switch (this.id) {
                 case "rock":
                     rock.classList.add("clicked");
                     paper.classList.remove("clicked");
@@ -76,99 +104,106 @@
         }
 
         const button = document.querySelector("#play");
+        let playerScore = 0;
+        let computerScore = 0;
+        let gameRound = 1;
         button.addEventListener("click", playGame);
 
-        function playGame(){
-            //console.log(rock.getAttribute("class"));
-
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        function temporary() {
-            let playerScore = 0;
-            let computerScore = 0;
-            for (let i = 1; i < 6; i++) {
-                if (game(i)) {
-                    playerScore++;
-                } else {
-                    computerScore++;
-                }
-                console.log("Player Score: " + playerScore + " | Computer Score: " + computerScore);
-                console.log("\n");
+        function playGame() {
+            if (gameRound == 6){
+                location.reload();
             }
-            if (playerScore > computerScore) {
-                console.log("You won the game!");
-            } else {
-                console.log("You lost the game!");
+            let currentRound = document.querySelector("#gameOne");
+            switch (gameRound) {
+                case 2: currentRound = document.querySelector("#gameTwo");
+                    console.log("im here");
+                    break;
+                case 3: currentRound = document.querySelector("#gameThree");
+                    break;
+                case 4: currentRound = document.querySelector("#gameFour");
+                    break;
+                case 5: currentRound = document.querySelector("#gameFive");
+                    break;
+                default:
+                    break;
             }
-            function game(round, playerScore, computerScore) {
-                let computerInput = computerPlay();
-                let userInput = prompt("Enter rock, paper or scissors").toLowerCase();
-                checkValidity(userInput);
-                let tie = false;
+            const playerTable = document.createElement('td');
+            const compTable = document.createElement('td');
 
-                if (userInput == computerInput) {
-                    tie = true;
-                }
-                console.log("Round: " + round);
-                console.log("User Input: " + userInput + " | Computer Input: " + computerInput);
-                console.log(playRound(userInput, computerInput));
-                if (playRound(userInput, computerInput).includes("Win")) {
-                    return true;
-                } else {
-                    return false;
-                }
 
-                function playRound(playerSelection, computerSelection) {
-
-                    switch (playerSelection) {
-                        case "rock":
-                            if (computerSelection == "paper") {
-                                return "You Lose! Paper beats Rock";
-                            }
-                            if (computerSelection == "scissors") {
-                                return "You Win! Rock beats Scissors";
-                            }
-                            break;
-                        case "paper":
-                            if (computerSelection == "rock") {
-                                return "You Win! Paper beats Rock";
-                            }
-                            if (computerSelection == "scissors") {
-                                return "You Lose! Scissors beats Paper";
-                            }
-                            break;
-                        case "scissors":
-                            if (computerSelection == "rock") {
-                                return "You Lose! Rock beats Scissors";
-                            }
-                            if (computerSelection == "paper") {
-                                return "You Win! Scissors beats Paper";
-                            }
-                            break;
-                        default:
-                            return "Error";
-                            break;
+            let playerChoice = "";
+            if (rock.getAttribute("class") == "clicked") {
+                playerChoice = "rock";
+            }
+            if (paper.getAttribute("class") == "clicked") {
+                playerChoice = "paper";
+            }
+            if (scissors.getAttribute("class") == "clicked") {
+                playerChoice = "scissors";
+            }
+            if (playerChoice == "") return;
+            let computerChoice = computerPlay();
+            while (computerChoice == playerChoice) {
+                computerChoice = computerPlay();
+            }
+            cRock.style.animationName = "none";
+            cPaper.style.animationName = "none";
+            cScissors.style.animationName = "none";
+            if (computerChoice == "rock") {
+                cRock.classList.add("clicked");
+                cScissors.classList.remove("clicked");
+                cPaper.classList.remove("clicked");
+            }
+            if (computerChoice == "paper") {
+                cRock.classList.remove("clicked");
+                cScissors.classList.remove("clicked");
+                cPaper.classList.add("clicked");
+            }
+            if (computerChoice == "scissors") {
+                cRock.classList.remove("clicked");
+                cScissors.classList.add("clicked");
+                cPaper.classList.remove("clicked");
+            }
+            switch (playerChoice) {
+                case "rock":
+                    if(computerChoice == "paper"){
+                        playerTable.textContent = "Lost";
+                        compTable.textContent = "Won";
                     }
-                    return "Error";
-                }
+                    if(computerChoice == "scissors"){
+                        playerTable.textContent = "Won";
+                        compTable.textContent = "Lost";
+                    }
+                    break;
+                case "paper":
+                     if(computerChoice == "rock"){
+                        playerTable.textContent = "Won";
+                        compTable.textContent = "Lost";
+                    }
+                    if(computerChoice == "scissors"){
+                        playerTable.textContent = "Lost";
+                        compTable.textContent = "Won";
+                    }
+                    break;
+                case "scissors":
+                     if(computerChoice == "rock"){
+                        playerTable.textContent = "Lost";
+                        compTable.textContent = "Won";
+                    }
+                    if(computerChoice == "paper"){
+                        playerTable.textContent = "Won";
+                        compTable.textContent = "Lost";
+                    }
+                    break;
             }
 
+
+            currentRound.appendChild(playerTable);
+            currentRound.appendChild(compTable);
+            gameRound += 1;
+            
         }
+
 
     </script>
 </body>
