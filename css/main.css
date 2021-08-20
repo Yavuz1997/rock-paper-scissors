@@ -63,8 +63,10 @@ input:hover{
     transform:scale(1.1);
 }
 
-#playButton{
-    text-align: center;
+#buttons{
+    display: flex;
+    width: 100vw;
+    justify-content: center;
 }
 
 button{
