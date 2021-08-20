@@ -150,7 +150,7 @@ button:active{
     font-size: 2rem;
     margin: 10px;
   }
-  #score{
+  #score, #hand{
     font-size: 1.4rem;
   }
 
