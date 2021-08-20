@@ -133,13 +133,23 @@ button:active{
 
   #winner{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 45%;
     height: 200px;
     margin: 15px;
     border: 3px solid #d9138a;
+    color: #d9138a;
     border-radius: 10px;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #result{
+    font-size: 2rem;
+    margin: 10px;
+  }
+  #score{
+    font-size: 1.4rem;
   }
 
   #history{
